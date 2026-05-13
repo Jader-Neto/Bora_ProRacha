@@ -274,6 +274,6 @@ isso permite trocar regras sem alterar o serviço principal. O sistema fica mais
 - [services/filter_service.py](services/filter_service.py)
 
 
-## Mudanças projetadas para melhora com o uso do Refactoring (Builder)
+## Arquivos melhorados com a aplicação do Refactoring (Builder)
 
-- Aplicar Builder no (domain/space.pv) pois é a entidade com mais campos opcionais e que passa pelo cadastro dinâmico.
+- Builder aplicado em (domain/space.py) agora se tornando (space_builder.py). O ganho mais concreto aparece no dynamic_space_registration_service.py, que hoje recebe um dicionário e constrói o Space manualmente. Com o Builder, cada etapa do cadastro dinâmico (que pode ter campos preenchidos em telas diferentes) vai adicionando atributos de forma encadeada, e o .build() só dispara quando tudo está pronto — validando os campos obrigatórios em um único ponto antes da criação.
