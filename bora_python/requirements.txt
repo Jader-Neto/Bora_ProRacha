@@ -1,0 +1,7 @@
+"""
+Requirements.txt - Project dependencies
+"""
+pytest==7.4.3
+pytest-cov==4.1.0
+Flask==2.3.3
+flask-cors==3.0.10

@@ -1,0 +1,2637 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bora Pro Racha - Home</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f5f6f8;
+      color: #222;
+    }
+
+    .container {
+      width: min(1200px, 92%);
+      margin: 0 auto;
+    }
+
+    header {
+      background: #fff;
+      border-bottom: 1px solid #e8e8e8;
+      padding: 18px 0;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .header-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .logo {
+      font-size: 2rem;
+      font-weight: 900;
+      line-height: 1;
+      color: #101010;
+      letter-spacing: -1px;
+    }
+
+    .logo span {
+      color: #2fa53a;
+    }
+
+    .nav-pill {
+      display: flex;
+      background: #fff;
+      border-radius: 999px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+      overflow: hidden;
+      border: 1px solid #ececec;
+    }
+
+    .nav-pill button {
+      border: none;
+      background: transparent;
+      padding: 16px 28px;
+      cursor: pointer;
+      font-size: 1rem;
+      color: #444;
+    }
+
+    .nav-pill button.active {
+      color: #2fa53a;
+      font-weight: 700;
+      border-bottom: 3px solid #2fa53a;
+      background: #fcfffc;
+    }
+
+    .login-btn {
+      border: none;
+      background: #1849a9;
+      color: #fff;
+      font-weight: 700;
+      padding: 14px 26px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .profile-header-btn {
+      display: none;
+      align-items: center;
+      gap: 12px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 8px 16px;
+      border-radius: 8px;
+      transition: background 0.2s;
+    }
+
+    .profile-header-btn:hover {
+      background: #f0f0f0;
+    }
+
+    .profile-header-btn.active {
+      display: flex;
+    }
+
+    .profile-avatar-header {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, #2fa53a, #1849a9);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 1.2rem;
+      font-weight: 700;
+    }
+
+    .profile-name-header {
+      color: #222;
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    main {
+      padding: 28px 0 60px;
+    }
+
+    .filters-card {
+      background: #fff;
+      border: 1px solid #e8e8e8;
+      border-radius: 14px;
+      padding: 22px;
+      box-shadow: 0 4px 18px rgba(0,0,0,0.04);
+    }
+
+    .filters-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 14px;
+      align-items: end;
+    }
+
+    .field label {
+      display: block;
+      font-size: 0.9rem;
+      margin-bottom: 8px;
+      color: #444;
+      font-weight: 600;
+    }
+
+    .field input,
+    .field select {
+      width: 100%;
+      height: 44px;
+      border: 1px solid #d9d9d9;
+      border-radius: 8px;
+      padding: 0 12px;
+      background: #fff;
+      color: #333;
+    }
+
+    .search-btn {
+      width: 100%;
+      height: 44px;
+      border: none;
+      border-radius: 8px;
+      background: #43aa2d;
+      color: white;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 22px 0 20px;
+      min-height: 38px;
+    }
+
+    .chip {
+      background: #e7e7e7;
+      color: #666;
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-size: 1rem;
+      display: inline-flex;
+      align-items: center;
+      margin: 0;
+    }
+
+    .section-title {
+      font-size: 1.7rem;
+      margin: 30px 0 18px;
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid #e9e9e9;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.05);
+    }
+
+    .card-image {
+      height: 170px;
+      background: linear-gradient(135deg, #d9d9d9, #bfc7d4);
+      position: relative;
+      display: flex;
+      align-items: flex-start;
+      justify-content: flex-end;
+      padding: 14px;
+    }
+
+    .status {
+      color: #fff;
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 8px 12px;
+      border-radius: 999px;
+    }
+
+    .status.available { background: #3aa93d; }
+    .status.unavailable { background: #d72d4f; }
+
+    .card-body {
+      padding: 16px;
+    }
+
+    .card h4 {
+      margin: 0 0 12px;
+      font-size: 1.2rem;
+    }
+
+    .meta {
+      display: grid;
+      gap: 8px;
+      color: #666;
+      font-size: 0.95rem;
+      margin-bottom: 16px;
+    }
+
+    .card-footer {
+      display: flex;
+      gap: 10px;
+    }
+
+    .details-btn, .calendar-btn {
+      height: 42px;
+      border-radius: 10px;
+      font-weight: 700;
+      cursor: pointer;
+      border: 1px solid #cfe7cc;
+      background: #fafff9;
+      color: #2d8c2f;
+    }
+
+    .details-btn {
+      flex: 1;
+    }
+
+    .calendar-btn {
+      width: 46px;
+    }
+
+    .hidden { display: none; }
+
+    .login-container {
+      max-width: 420px;
+      margin: 80px auto;
+      background: #fff;
+      border-radius: 16px;
+      border: 1px solid #e8e8e8;
+      padding: 40px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+    }
+
+    .login-container h1 {
+      text-align: center;
+      font-size: 2rem;
+      margin: 0 0 30px;
+      color: #101010;
+    }
+
+    .login-container .logo {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 1.8rem;
+    }
+
+    .login-form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .form-group label {
+      font-weight: 600;
+      color: #444;
+      font-size: 0.95rem;
+    }
+
+    .form-group input {
+      height: 48px;
+      border: 1px solid #d9d9d9;
+      border-radius: 8px;
+      padding: 0 14px;
+      font-size: 1rem;
+      color: #333;
+      transition: border-color 0.2s;
+    }
+
+    .form-group input:focus {
+      outline: none;
+      border-color: #2fa53a;
+      box-shadow: 0 0 0 3px rgba(47, 165, 58, 0.1);
+    }
+
+    .remember-forgot {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.9rem;
+      gap: 10px;
+    }
+
+    .remember-forgot label {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      color: #444;
+    }
+
+    .remember-forgot a {
+      color: #1849a9;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .remember-forgot a:hover {
+      text-decoration: underline;
+    }
+
+    .login-submit-btn {
+      height: 48px;
+      background: #2fa53a;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: background 0.2s;
+    }
+
+    .login-submit-btn:hover {
+      background: #25882f;
+    }
+
+    .signup-link {
+      text-align: center;
+      margin-top: 16px;
+      color: #666;
+      font-size: 0.95rem;
+    }
+
+    .signup-link a {
+      color: #1849a9;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .signup-link a:hover {
+      text-decoration: underline;
+    }
+
+    .back-to-home-login {
+      margin-bottom: 20px;
+    }
+
+    .back-to-home-login button {
+      border: none;
+      background: transparent;
+      color: #1849a9;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 0;
+    }
+
+    .back-to-home-login button:hover {
+      text-decoration: underline;
+    }
+
+    .profile-container {
+      max-width: 1000px;
+      margin: 30px auto;
+      background: #fff;
+      border-radius: 16px;
+      border: 1px solid #e8e8e8;
+      overflow: hidden;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+    }
+
+    .profile-header {
+      background: linear-gradient(135deg, #2fa53a, #1849a9);
+      padding: 40px 30px;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .profile-avatar {
+      width: 100px;
+      height: 100px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+    }
+
+    .profile-info-header {
+      flex: 1;
+    }
+
+    .profile-info-header h1 {
+      margin: 0 0 8px;
+      font-size: 1.8rem;
+    }
+
+    .profile-info-header p {
+      margin: 0;
+      opacity: 0.9;
+      font-size: 1rem;
+    }
+
+    .profile-tabs {
+      display: flex;
+      border-bottom: 1px solid #e8e8e8;
+      gap: 0;
+    }
+
+    .profile-tab {
+      flex: 1;
+      padding: 18px 24px;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      font-size: 1rem;
+      color: #666;
+      font-weight: 600;
+      border-bottom: 3px solid transparent;
+      transition: all 0.2s;
+    }
+
+    .profile-tab.active {
+      color: #2fa53a;
+      border-bottom-color: #2fa53a;
+      background: #fcfffc;
+    }
+
+    .profile-tab:hover {
+      background: #f8f8f8;
+    }
+
+    .profile-content {
+      padding: 30px;
+    }
+
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    .form-section {
+      margin-bottom: 30px;
+    }
+
+    .form-section h3 {
+      margin: 0 0 16px;
+      font-size: 1.2rem;
+      color: #222;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-bottom: 16px;
+    }
+
+    .form-row.full {
+      grid-template-columns: 1fr;
+    }
+
+    .form-control {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .form-control label {
+      font-weight: 600;
+      color: #444;
+      font-size: 0.95rem;
+    }
+
+    .form-control input,
+    .form-control select {
+      height: 44px;
+      border: 1px solid #d9d9d9;
+      border-radius: 8px;
+      padding: 0 12px;
+      font-size: 1rem;
+      color: #333;
+    }
+
+    .form-control input:focus,
+    .form-control select:focus {
+      outline: none;
+      border-color: #2fa53a;
+      box-shadow: 0 0 0 3px rgba(47, 165, 58, 0.1);
+    }
+
+    .btn-save {
+      background: #2fa53a;
+      color: #fff;
+      padding: 12px 32px;
+      border: none;
+      border-radius: 8px;
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background 0.2s;
+    }
+
+    .btn-save:hover {
+      background: #25882f;
+    }
+
+    .reservas-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .reserva-card {
+      border: 1px solid #e8e8e8;
+      border-radius: 10px;
+      padding: 16px;
+      background: #fafafa;
+    }
+
+    .reserva-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+      margin-bottom: 12px;
+    }
+
+    .reserva-title {
+      font-weight: 700;
+      color: #222;
+      font-size: 1.1rem;
+      margin: 0;
+    }
+
+    .reserva-status {
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .status-confirmada {
+      background: #e8f5e9;
+      color: #2e7d32;
+    }
+
+    .status-pendente {
+      background: #fff3e0;
+      color: #f57c00;
+    }
+
+    .status-cancelada {
+      background: #ffebee;
+      color: #c62828;
+    }
+
+    .reserva-details {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    .reserva-detail {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .reserva-detail strong {
+      color: #222;
+      font-weight: 600;
+    }
+
+    .pagamento-card {
+      border: 1px solid #e8e8e8;
+      border-radius: 10px;
+      padding: 16px;
+      background: #fafafa;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .pagamento-info {
+      flex: 1;
+    }
+
+    .pagamento-info h4 {
+      margin: 0 0 8px;
+      font-size: 1rem;
+      color: #222;
+    }
+
+    .pagamento-info p {
+      margin: 0;
+      color: #666;
+      font-size: 0.9rem;
+    }
+
+    .pagamento-valor {
+      text-align: right;
+    }
+
+    .pagamento-valor .valor {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #2fa53a;
+    }
+
+    .pagamento-valor .data {
+      color: #999;
+      font-size: 0.85rem;
+    }
+
+    .empty-message {
+      text-align: center;
+      padding: 40px 20px;
+      color: #999;
+    }
+
+    .empty-message p {
+      margin: 0;
+      font-size: 1rem;
+    }
+
+    .profile-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .btn-logout {
+      background: #d72d4f;
+      color: #fff;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    .btn-logout:hover {
+      background: #b8243e;
+    }
+
+    /* SISTEMA DE NOTIFICAÇÕES */
+    .notification-container {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      max-width: 400px;
+    }
+
+    .notification {
+      background: #fff;
+      border-radius: 12px;
+      padding: 16px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+      border-left: 4px solid #2fa53a;
+      animation: slideIn 0.3s ease-out;
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+      gap: 12px;
+    }
+
+    .notification.success {
+      border-left-color: #2fa53a;
+    }
+
+    .notification.warning {
+      border-left-color: #f57c00;
+    }
+
+    .notification.info {
+      border-left-color: #1849a9;
+    }
+
+    .notification.error {
+      border-left-color: #d72d4f;
+    }
+
+    .notification-content {
+      flex: 1;
+    }
+
+    .notification-title {
+      font-weight: 700;
+      color: #222;
+      margin: 0 0 4px;
+      font-size: 1rem;
+    }
+
+    .notification-message {
+      color: #666;
+      margin: 0;
+      font-size: 0.9rem;
+    }
+
+    .notification-close {
+      background: none;
+      border: none;
+      color: #999;
+      cursor: pointer;
+      font-size: 1.2rem;
+      padding: 0;
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    @keyframes slideIn {
+      from {
+        transform: translateX(400px);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    .checkin-section {
+      background: linear-gradient(135deg, #e3f2fd, #f0f7ff);
+      border: 2px solid #1849a9;
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+
+    .checkin-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .checkin-header h4 {
+      margin: 0;
+      color: #1849a9;
+      font-size: 1.1rem;
+    }
+
+    .checkin-status {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    .checkin-status.pending {
+      background: #fff3e0;
+      color: #f57c00;
+    }
+
+    .checkin-status.confirmed {
+      background: #e8f5e9;
+      color: #2e7d32;
+    }
+
+    .checkin-info {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 12px;
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    .checkin-info-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .checkin-info-item strong {
+      color: #222;
+    }
+
+    .checkin-actions {
+      display: flex;
+      gap: 10px;
+    }
+
+    .btn-checkin {
+      background: #1849a9;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: background 0.2s;
+    }
+
+    .btn-checkin:hover {
+      background: #0f3a7d;
+    }
+
+    .btn-checkin:disabled {
+      background: #ccc;
+      cursor: not-allowed;
+    }
+
+    .btn-cancel {
+      background: transparent;
+      color: #d72d4f;
+      padding: 10px 20px;
+      border: 1px solid #d72d4f;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+
+    .btn-cancel:hover {
+      background: #ffebee;
+    }
+
+    .reminder-badge {
+      display: inline-block;
+      background: #ff6b6b;
+      color: #fff;
+      padding: 4px 8px;
+      border-radius: 50%;
+      font-size: 0.75rem;
+      font-weight: 700;
+      min-width: 20px;
+      text-align: center;
+    }
+
+    @media (max-width: 1100px) {
+      .filters-grid { grid-template-columns: repeat(3, 1fr); }
+      .cards-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 720px) {
+      .header-content {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .nav-pill {
+        justify-content: center;
+      }
+
+      .filters-grid,
+      .cards-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-pill button {
+        padding: 14px 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container header-content">
+      <div class="logo">BORA <span>PRO RACHA</span></div>
+
+      <button class="login-btn" id="loginBtnHeader">Entrar</button>
+      <button class="profile-header-btn" id="profileHeaderBtn">
+        <div class="profile-avatar-header" id="profileAvatarHeader">👤</div>
+        <span class="profile-name-header" id="profileNameHeader">João Silva</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Container de Notificações -->
+  <div class="notification-container" id="notificationContainer"></div>
+
+  <!-- Modal de Avaliação -->
+  <div id="avaliacaoModal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);z-index:2000;align-items:center;justify-content:center;">
+    <div style="background:#fff;border-radius:16px;padding:30px;max-width:500px;width:90%;box-shadow:0 10px 40px rgba(0,0,0,0.3);">
+      <h2 style="margin:0 0 20px;font-size:1.5rem;color:#222;">⭐ Avaliar Quadra</h2>
+      
+      <div style="margin-bottom:20px;">
+        <label style="display:block;font-weight:600;margin-bottom:10px;color:#444;">Classificação</label>
+        <div id="starRating" style="display:flex;gap:10px;font-size:2rem;cursor:pointer;">
+          <span class="star" data-rating="1" style="cursor:pointer;">☆</span>
+          <span class="star" data-rating="2" style="cursor:pointer;">☆</span>
+          <span class="star" data-rating="3" style="cursor:pointer;">☆</span>
+          <span class="star" data-rating="4" style="cursor:pointer;">☆</span>
+          <span class="star" data-rating="5" style="cursor:pointer;">☆</span>
+        </div>
+        <input type="hidden" id="ratingValue" value="0" />
+      </div>
+
+      <div style="margin-bottom:20px;">
+        <label style="display:block;font-weight:600;margin-bottom:8px;color:#444;">Comentário</label>
+        <textarea id="comentarioText" placeholder="Compartilhe sua experiência..." style="width:100%;height:100px;border:1px solid #ddd;border-radius:8px;padding:12px;font-size:0.95rem;font-family:Arial;resize:none;"></textarea>
+      </div>
+
+      <div style="display:flex;gap:12px;justify-content:flex-end;">
+        <button onclick="fecharModalAvaliacao()" style="padding:12px 24px;border:1px solid #ddd;background:#f5f5f5;border-radius:8px;cursor:pointer;font-weight:600;color:#666;">Cancelar</button>
+        <button onclick="enviarAvaliacao()" style="padding:12px 24px;background:#2fa53a;color:#fff;border:none;border-radius:8px;cursor:pointer;font-weight:600;">Enviar Avaliação</button>
+      </div>
+    </div>
+  </div>
+
+  <main>
+    <div class="container" id="homePage">
+      <section class="filters-card">
+        <div class="filters-grid">
+          <div class="field">
+            <label for="data">Data</label>
+            <input type="date" id="data" />
+          </div>
+
+          <div class="field">
+            <label for="horaInicio">Hr Início</label>
+            <input type="time" id="horaInicio" />
+          </div>
+
+          <div class="field">
+            <label for="horaFim">Hr Fim</label>
+            <input type="time" id="horaFim" />
+          </div>
+
+          <div class="field">
+            <label for="tipo">Tipo</label>
+            <select id="tipo">
+              <option value="">Selecionar tipo</option>
+              <option value="Esporte">Esporte</option>
+              <option value="Evento">Evento</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="modalidade">Modalidade</label>
+            <select id="modalidade">
+              <option value="">Selecionar modalidade</option>
+              <option value="Futsal">Futsal</option>
+              <option value="Futebol">Futebol</option>
+              <option value="Basquete">Basquete</option>
+              <option value="Vôlei">Vôlei</option>
+              <option value="Society">Society</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <button class="search-btn" id="buscarBtn">Buscar</button>
+          </div>
+        </div>
+      </section>
+
+      <div class="chips" id="chips"></div>
+
+      <section class="empty-state" id="emptyState">
+        <h3>Selecione os filtros acima</h3>
+        <p>Informe data, horário, tipo e modalidade para encontrar uma quadra disponível.</p>
+      </section>
+
+      <section id="resultados" class="hidden">
+        <h2 class="section-title">Quadras disponíveis</h2>
+        <div class="cards-grid" id="cardsGrid"></div>
+      </section>
+    </div>
+        <section id="detalhePage" class="hidden">
+        <button id="voltarBtn" style="margin-bottom:18px;border:none;background:#1849a9;color:#fff;width:42px;height:42px;border-radius:8px;cursor:pointer;font-size:1.2rem;">←</button>
+
+        <h1 id="detalheTitulo" style="font-size:2.6rem;margin:0 0 24px;">Lorem ipsum</h1>
+
+        <div style="display:grid;grid-template-columns:0.95fr 1fr;gap:18px;align-items:start;margin-bottom:26px;">
+          <div style="padding:8px;">
+            <div style="height:260px;background:linear-gradient(135deg,#dedede,#cfcfcf);border-radius:10px;margin-bottom:12px;overflow:hidden;background-position:center;background-size:cover;padding:8px;"></div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:4px;">
+              <div style="height:110px;background:#d9d9d9;border-radius:8px;padding:6px;overflow:hidden;"></div>
+              <div style="height:110px;background:#d9d9d9;border-radius:8px;padding:6px;overflow:hidden;"></div>
+            </div>
+          </div>
+
+          <div>
+            <p id="detalheDescricao" style="font-size:1.08rem;line-height:1.65;color:#555;margin:0 0 20px;">
+              Espaço amplo e bem localizado, com excelente iluminação natural, estrutura moderna e fácil acesso ao transporte público. O local oferece conforto e praticidade.
+            </p>
+
+            <button id="alugarBtn" style="border:none;background:#43aa2d;color:#fff;font-weight:700;padding:12px 34px;border-radius:6px;cursor:pointer;margin-bottom:18px;" onclick="iniciarAluguel()">Alugar</button>
+
+            <div style="border:1px solid #e4e4e4;border-radius:10px;padding:18px;background:#fff;">
+              <h3 style="margin:0 0 16px;font-size:1rem;color:#444;">Informações</h3>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px 20px;">
+                <div><strong>Acessibilidade</strong><br><span style="color:#888;font-size:.9rem;">Local com bom acesso e circulação.</span></div>
+                <div><strong>Segurança</strong><br><span style="color:#888;font-size:.9rem;">Ambiente monitorado e seguro.</span></div>
+                <div><strong>Bolas no local</strong><br><span style="color:#888;font-size:.9rem;">Consulte disponibilidade no horário.</span></div>
+                <div><strong>Piso antiderrapante</strong><br><span style="color:#888;font-size:.9rem;">Ideal para prática esportiva.</span></div>
+              </div>
+            </div>
+            
+            <div id="precoInfo" style="background:#e3f2fd;border:1px solid #1849a9;border-radius:8px;padding:16px;margin-top:18px;">
+              <h4 style="margin:0 0 8px;color:#1849a9;">Preço por Hora</h4>
+              <p style="margin:0;font-size:1.3rem;font-weight:700;color:#2fa53a;" id="precoDisplay">R$ 120,00</p>
+            </div>
+          </div>
+        </div>
+
+        <section style="background:#fff;border:1px solid #e7e7e7;border-radius:12px;padding:22px;box-shadow:0 4px 18px rgba(0,0,0,.04);margin-top:24px;">
+          <h3 style="margin:0 0 18px;font-size:1.1rem;color:#222;font-weight:700;">⭐ Avaliações</h3>
+          
+          <div style="display:flex;align-items:center;gap:16px;margin-bottom:20px;padding-bottom:20px;border-bottom:1px solid #f0f0f0;">
+            <div style="display:flex;gap:4px;font-size:1.3rem;">⭐⭐⭐⭐⭐</div>
+            <div>
+              <div style="font-weight:700;color:#222;font-size:1rem;">4.8/5</div>
+              <div style="color:#888;font-size:.9rem;">Baseado em 142 avaliações</div>
+            </div>
+          </div>
+
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+            <div style="padding:14px;background:#f9f9f9;border-radius:8px;border-left:4px solid #2fa53a;">
+              <div style="color:#666;font-size:.95rem;margin-bottom:8px;">👥 João da Silva</div>
+              <div style="color:#333;font-size:.9rem;">Ótimo local! Quadra em perfeito estado e staff muito atencioso.</div>
+            </div>
+            <div style="padding:14px;background:#f9f9f9;border-radius:8px;border-left:4px solid #2fa53a;">
+              <div style="color:#666;font-size:.95rem;margin-bottom:8px;">⚽ Pedro Mendes</div>
+              <div style="color:#333;font-size:.9rem;">Recomendo! Melhor quadra de futsal da região, voltarei com certeza.</div>
+            </div>
+          </div>
+        </section>
+      </section>
+    </div>
+
+    <section id="loginPage" class="hidden">
+      <div class="container">
+        <div class="login-container">
+          <div class="back-to-home-login">
+            <button id="voltarLoginBtn">← Voltar</button>
+          </div>
+
+          <div class="logo">BORA <span style="color: #2fa53a;">PRO RACHA</span></div>
+          <h1>Entrar</h1>
+
+          <form class="login-form" id="loginForm">
+            <div class="form-group">
+              <label for="email">Email ou Usuário</label>
+              <input type="text" id="email" name="email" placeholder="seu@email.com" required />
+            </div>
+
+            <div class="form-group">
+              <label for="senha">Senha</label>
+              <input type="password" id="senha" name="senha" placeholder="••••••••" required />
+            </div>
+
+            <div class="remember-forgot">
+              <label>
+                <input type="checkbox" name="remember" />
+                Lembrar-me
+              </label>
+              <a href="#">Esqueceu a senha?</a>
+            </div>
+
+            <button type="submit" class="login-submit-btn">Entrar</button>
+
+            <div class="signup-link">
+              Não tem conta? <a href="#" id="goToSignupLink">Crie uma agora</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section id="signupPage" class="hidden">
+      <div class="container">
+        <div class="login-container">
+          <div class="back-to-home-login">
+            <button id="voltarSignupBtn">← Voltar</button>
+          </div>
+
+          <div class="logo">BORA <span style="color: #2fa53a;">PRO RACHA</span></div>
+          <h1>Criar Conta</h1>
+
+          <form class="login-form" id="signupForm">
+            <div class="form-group">
+              <label for="signupNome">Nome Completo</label>
+              <input type="text" id="signupNome" name="nome" placeholder="Seu nome completo" required />
+            </div>
+
+            <div class="form-group">
+              <label for="signupEmail">Email</label>
+              <input type="email" id="signupEmail" name="email" placeholder="seu@email.com" required />
+            </div>
+
+            <div class="form-group">
+              <label for="signupTelefone">Telefone</label>
+              <input type="tel" id="signupTelefone" name="telefone" placeholder="(82) 98765-4321" required />
+            </div>
+
+            <div class="form-group">
+              <label for="signupSenha">Senha</label>
+              <input type="password" id="signupSenha" name="senha" placeholder="••••••••" required />
+            </div>
+
+            <div class="form-group">
+              <label for="signupSenhaConfirm">Confirmar Senha</label>
+              <input type="password" id="signupSenhaConfirm" name="senhaConfirm" placeholder="••••••••" required />
+            </div>
+
+            <button type="submit" class="login-submit-btn">Criar Conta</button>
+
+            <div class="signup-link">
+              Já tem conta? <a href="#" id="voltarLoginLink">Voltar ao login</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section id="profilePage" class="hidden">
+      <div class="container">
+        <button id="voltarProfileBtn" style="margin-top:20px;margin-bottom:18px;border:none;background:#1849a9;color:#fff;width:42px;height:42px;border-radius:8px;cursor:pointer;font-size:1.2rem;">←</button>
+
+        <div class="profile-container">
+          <div class="profile-header">
+            <div class="profile-avatar">👤</div>
+            <div class="profile-info-header">
+              <h1 id="profileUserName">João Silva</h1>
+              <p id="profileUserEmail">joao.silva@email.com</p>
+            </div>
+          </div>
+
+          <div class="profile-tabs">
+            <button class="profile-tab active" data-tab="perfil">Meus Dados</button>
+            <button class="profile-tab" data-tab="reservas">Minhas Reservas</button>
+            <button class="profile-tab" data-tab="pagamentos">Pagamentos</button>
+          </div>
+
+          <div class="profile-content">
+            <!-- TAB: PERFIL -->
+            <div id="perfil-content" class="tab-content active">
+              <div class="form-section">
+                <h3>Informações Pessoais</h3>
+                <div class="form-row">
+                  <div class="form-control">
+                    <label for="nome">Nome Completo</label>
+                    <input type="text" id="nome" value="João Silva" />
+                  </div>
+                  <div class="form-control">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" value="joao.silva@email.com" />
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-control">
+                    <label for="telefone">Telefone</label>
+                    <input type="tel" id="telefone" value="(82) 98765-4321" />
+                  </div>
+                  <div class="form-control">
+                    <label for="cpf">CPF</label>
+                    <input type="text" id="cpf" value="123.456.789-00" readonly />
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-section">
+                <h3>Endereço</h3>
+                <div class="form-row full">
+                  <div class="form-control">
+                    <label for="endereco">Endereço</label>
+                    <input type="text" id="endereco" value="Rua das Flores, 123" />
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-control">
+                    <label for="cidade">Cidade</label>
+                    <input type="text" id="cidade" value="Maceió" />
+                  </div>
+                  <div class="form-control">
+                    <label for="estado">Estado</label>
+                    <input type="text" id="estado" value="AL" />
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-control">
+                    <label for="cep">CEP</label>
+                    <input type="text" id="cep" value="57000-000" />
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-section">
+                <h3>Dados de Pagamento</h3>
+                <div class="form-row">
+                  <div class="form-control">
+                    <label for="cartao">Número do Cartão</label>
+                    <input type="text" id="cartao" value="**** **** **** 1234" readonly />
+                  </div>
+                  <div class="form-control">
+                    <label for="validade">Validade</label>
+                    <input type="text" id="validade" value="12/26" readonly />
+                  </div>
+                </div>
+              </div>
+
+              <button class="btn-save">Salvar Alterações</button>
+            </div>
+
+            <!-- TAB: RESERVAS -->
+            <div id="reservas-content" class="tab-content">
+              <div class="reservas-list" id="reservasList">
+                <div class="reserva-card" data-reserva-id="1">
+                  <div class="reserva-header">
+                    <h3 class="reserva-title">Arena Futsal Central</h3>
+                    <span class="reserva-status status-confirmada">Confirmada</span>
+                  </div>
+                  <div class="reserva-details">
+                    <div class="reserva-detail">
+                      <strong>Data</strong>
+                      <span>28 de Abril, 2026</span>
+                    </div>
+                    <div class="reserva-detail">
+                      <strong>Horário</strong>
+                      <span>18:00 - 20:00</span>
+                    </div>
+                    <div class="reserva-detail">
+                      <strong>Local</strong>
+                      <span>Centro</span>
+                    </div>
+                  </div>
+                  <div class="checkin-section">
+                    <div class="checkin-header">
+                      <h4>✓ Check-in</h4>
+                      <span class="checkin-status pending" id="checkin-status-1">Pendente</span>
+                    </div>
+                    <div class="checkin-info">
+                      <div class="checkin-info-item">
+                        <strong>Faltam:</strong>
+                        <span id="countdown-1">Iniciado</span>
+                      </div>
+                      <div class="checkin-info-item">
+                        <strong>Código:</strong>
+                        <span>A1B2C3</span>
+                      </div>
+                    </div>
+                    <div class="checkin-actions">
+                      <button class="btn-checkin" onclick="fazerCheckin(1, 'Arena Futsal Central')">Fazer Check-in</button>
+                      <button class="btn-cancel" onclick="cancelarReserva(1)">Cancelar</button>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="reserva-card" data-reserva-id="2">
+                  <div class="reserva-header">
+                    <h3 class="reserva-title">Campo do Parque</h3>
+                    <span class="reserva-status status-confirmada">Confirmada ✓</span>
+                  </div>
+                  <div class="reserva-details">
+                    <div class="reserva-detail">
+                      <strong>Data</strong>
+                      <span>25 de Abril, 2026</span>
+                    </div>
+                    <div class="reserva-detail">
+                      <strong>Horário</strong>
+                      <span>19:00 - 21:00</span>
+                    </div>
+                    <div class="reserva-detail">
+                      <strong>Local</strong>
+                      <span>Parque Sul</span>
+                    </div>
+                  </div>
+                  <div class="checkin-section" style="background: #e8f5e9; border-color: #2e7d32;">
+                    <div class="checkin-header">
+                      <h4 style="color: #2e7d32;">✓ Check-in Realizado</h4>
+                      <span class="checkin-status confirmed">Confirmado</span>
+                    </div>
+                    <div class="checkin-info">
+                      <div class="checkin-info-item">
+                        <strong>Check-in em:</strong>
+                        <span>25 de Abril às 18:55</span>
+                      </div>
+                      <div class="checkin-info-item">
+                        <strong>Duração:</strong>
+                        <span>2 horas</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="reserva-card" data-reserva-id="3">
+                  <div class="reserva-header">
+                    <h3 class="reserva-title">Quadra Olímpica</h3>
+                    <span class="reserva-status status-pendente">Pendente</span>
+                  </div>
+                  <div class="reserva-details">
+                    <div class="reserva-detail">
+                      <strong>Data</strong>
+                      <span>30 de Abril, 2026</span>
+                    </div>
+                    <div class="reserva-detail">
+                      <strong>Horário</strong>
+                      <span>18:30 - 20:30</span>
+                    </div>
+                    <div class="reserva-detail">
+                      <strong>Local</strong>
+                      <span>Vila Nova</span>
+                    </div>
+                  </div>
+                  <div class="checkin-section" style="background: #fff3e0; border-color: #f57c00;">
+                    <div class="checkin-header">
+                      <h4 style="color: #f57c00;">🔔 Lembrete</h4>
+                      <span class="checkin-status pending">Aguardando</span>
+                    </div>
+                    <div class="checkin-info">
+                      <div class="checkin-info-item">
+                        <strong>Check-in disponível em:</strong>
+                        <span id="countdown-3">2 dias</span>
+                      </div>
+                      <div class="checkin-info-item">
+                        <strong>Status:</strong>
+                        <span>Pagamento aguardando confirmação</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- TAB: PAGAMENTOS -->
+            <div id="pagamentos-content" class="tab-content">
+              <div style="margin-bottom: 30px;">
+                <h3>Histórico de Pagamentos</h3>
+                <div id="pagamentosList" style="display: flex; flex-direction: column; gap: 12px;">
+                  <div class="pagamento-card">
+                    <div class="pagamento-info">
+                      <h4>Arena Futsal Central</h4>
+                      <p>Reserva do dia 28/04/2026 - 18:00</p>
+                    </div>
+                    <div class="pagamento-valor">
+                      <div class="valor">R$ 120,00</div>
+                      <div class="data">28 de Abril, 2026</div>
+                      <span class="reserva-status status-confirmada" style="display: inline-block;">Pago</span>
+                    </div>
+                  </div>
+
+                  <div class="pagamento-card">
+                    <div class="pagamento-info">
+                      <h4>Campo do Parque</h4>
+                      <p>Reserva do dia 25/04/2026 - 19:00</p>
+                    </div>
+                    <div class="pagamento-valor">
+                      <div class="valor">R$ 100,00</div>
+                      <div class="data">25 de Abril, 2026</div>
+                      <span class="reserva-status status-confirmada" style="display: inline-block;">Pago</span>
+                    </div>
+                  </div>
+
+                  <div class="pagamento-card">
+                    <div class="pagamento-info">
+                      <h4>Quadra Olímpica</h4>
+                      <p>Reserva do dia 30/04/2026 - 18:30</p>
+                    </div>
+                    <div class="pagamento-valor">
+                      <div class="valor">R$ 150,00</div>
+                      <div class="data">30 de Abril, 2026</div>
+                      <span class="reserva-status status-pendente" style="display: inline-block;">Pendente</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div style="background: #f0f7ff; border-left: 4px solid #1849a9; padding: 16px; border-radius: 8px; margin-top: 20px;">
+                <h4 style="margin-top: 0; color: #1849a9;">Resumo Financeiro</h4>
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;">
+                  <div>
+                    <p style="margin: 0; color: #666; font-size: 0.9rem;">Total Pago</p>
+                    <p style="margin: 8px 0 0; font-size: 1.3rem; font-weight: 700; color: #2fa53a;">R$ 220,00</p>
+                  </div>
+                  <div>
+                    <p style="margin: 0; color: #666; font-size: 0.9rem;">Pendente</p>
+                    <p style="margin: 8px 0 0; font-size: 1.3rem; font-weight: 700; color: #f57c00;">R$ 150,00</p>
+                  </div>
+                  <div>
+                    <p style="margin: 0; color: #666; font-size: 0.9rem;">Total</p>
+                    <p style="margin: 8px 0 0; font-size: 1.3rem; font-weight: 700; color: #222;">R$ 370,00</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="profile-actions">
+          <button class="btn-logout" id="logoutBtn">Sair</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- PÁGINA DE PAGAMENTO -->
+    <section id="pagamentoPage" class="hidden">
+      <div class="container">
+        <button id="voltarPagamentoBtn" style="margin-top:20px;margin-bottom:18px;border:none;background:#1849a9;color:#fff;width:42px;height:42px;border-radius:8px;cursor:pointer;font-size:1.2rem;">←</button>
+
+        <div class="profile-container">
+          <div class="profile-header" style="background:linear-gradient(135deg, #f57c00, #d72d4f);">
+            <div class="profile-avatar" style="font-size:3rem;">💳</div>
+            <div class="profile-info-header">
+              <h1>Confirmar Pagamento</h1>
+              <p id="pagamentoLocal">Arena Futsal Central</p>
+            </div>
+          </div>
+
+          <div class="profile-content">
+            <div class="form-section">
+              <h3>Resumo da Reserva</h3>
+              <div style="background:#f5f6f8;border-radius:8px;padding:16px;margin-bottom:20px;">
+                <div style="display:flex;justify-content:space-between;margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid #ddd;">
+                  <span>Local:</span>
+                  <strong id="pagLocal">Arena Futsal Central</strong>
+                </div>
+                <div style="display:flex;justify-content:space-between;margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid #ddd;">
+                  <span>Data:</span>
+                  <strong id="pagData">28 de Abril, 2026</strong>
+                </div>
+                <div style="display:flex;justify-content:space-between;margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid #ddd;">
+                  <span>Horário:</span>
+                  <strong id="pagHorario">18:00 - 20:00</strong>
+                </div>
+                <div style="display:flex;justify-content:space-between;margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid #ddd;">
+                  <span>Duração:</span>
+                  <strong>2 horas</strong>
+                </div>
+                <div style="display:flex;justify-content:space-between;font-size:1.2rem;font-weight:700;color:#2fa53a;">
+                  <span>Total:</span>
+                  <span id="pagTotal">R$ 240,00</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-section">
+              <h3>Dados de Pagamento</h3>
+              <div class="form-row">
+                <div class="form-control">
+                  <label for="nomeTitular">Nome do Titular</label>
+                  <input type="text" id="nomeTitular" placeholder="João Silva" />
+                </div>
+                <div class="form-control">
+                  <label for="cpfTitular">CPF</label>
+                  <input type="text" id="cpfTitular" placeholder="123.456.789-00" />
+                </div>
+              </div>
+              <div class="form-row full">
+                <div class="form-control">
+                  <label for="cartaoNumero">Número do Cartão</label>
+                  <input type="text" id="cartaoNumero" placeholder="1234 5678 9012 3456" />
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-control">
+                  <label for="cartaoValidade">Validade</label>
+                  <input type="text" id="cartaoValidade" placeholder="MM/AA" />
+                </div>
+                <div class="form-control">
+                  <label for="cartaoCVV">CVV</label>
+                  <input type="text" id="cartaoCVV" placeholder="000" />
+                </div>
+              </div>
+            </div>
+
+            <div style="background:#e8f5e9;border-left:4px solid #2fa53a;padding:16px;border-radius:8px;margin-bottom:20px;">
+              <p style="margin:0;color:#2e7d32;font-size:0.9rem;">
+                ✓ Pagamento seguro com criptografia SSL. Seus dados não são armazenados.
+              </p>
+            </div>
+
+            <div style="display:flex;gap:12px;">
+              <button class="btn-save" id="confirmarPagamentoBtn" style="flex:1;">Confirmar Pagamento</button>
+              <button id="cancelarPagamentoBtn" class="btn-cancel" style="flex:1;background:#fff;border:1px solid #ccc;color:#222;">Cancelar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const homePage = document.getElementById('homePage') || document.querySelector('main .container');
+    const detalhePage = document.getElementById('detalhePage');
+    const loginPage = document.getElementById('loginPage');
+    const signupPage = document.getElementById('signupPage');
+    const profilePage = document.getElementById('profilePage');
+    const voltarBtn = document.getElementById('voltarBtn');
+    const voltarLoginBtn = document.getElementById('voltarLoginBtn');
+    const voltarSignupBtn = document.getElementById('voltarSignupBtn');
+    const voltarProfileBtn = document.getElementById('voltarProfileBtn');
+    const loginBtnHeader = document.getElementById('loginBtnHeader');
+    const profileHeaderBtn = document.getElementById('profileHeaderBtn');
+    const profileNameHeader = document.getElementById('profileNameHeader');
+    const loginForm = document.getElementById('loginForm');
+    const signupForm = document.getElementById('signupForm');
+    const logoutBtn = document.getElementById('logoutBtn');
+    const detalheTitulo = document.getElementById('detalheTitulo');
+    const detalheDescricao = document.getElementById('detalheDescricao');
+
+    let usuarioLogado = null;
+    let quadraSelecionada = null;
+    let reservasUsuario = [];
+    let pagamentosUsuario = [];
+    let usuariosRegistrados = [];
+    let avaliacoes = [];
+
+    const API_BASE = 'http://127.0.0.1:5000';
+
+    const MOCK_SPACES = [
+      {"nome":"Arena Futsal Central","tipo":"Esporte","modalidade":"Futsal","inicio":"18:00","fim":"20:00","local":"Pajuçara, Maceió - AL, Av. Dr. Antônio Gouveia, 150","status":"Disponível"},
+      {"nome":"Campo do Parque","tipo":"Esporte","modalidade":"Futebol","inicio":"19:00","fim":"21:00","local":"Jatiúca, Maceió - AL, Rua Carlos Jundiaí, 45","status":"Disponível"},
+      {"nome":"Quadra Olímpica","tipo":"Esporte","modalidade":"Basquete","inicio":"18:30","fim":"20:30","local":"Farol, Maceió - AL, Rua Santa Luzia, 220","status":"Disponível"}
+    ];
+
+    let quadras = MOCK_SPACES.slice();
+
+    async function loadQuadrasFromApi() {
+      try {
+        const res = await fetch(`${API_BASE}/api/quadras`);
+        if (!res.ok) throw new Error('Falha ao carregar quadras');
+        quadras = await res.json();
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    const dataInput = document.getElementById('data');
+    const horaInicioInput = document.getElementById('horaInicio');
+    const horaFimInput = document.getElementById('horaFim');
+    const tipoInput = document.getElementById('tipo');
+    const modalidadeInput = document.getElementById('modalidade');
+    const buscarBtn = document.getElementById('buscarBtn');
+    const chipsContainer = document.getElementById('chips');
+    const emptyState = document.getElementById('emptyState');
+    const resultados = document.getElementById('resultados');
+    const cardsGrid = document.getElementById('cardsGrid');
+
+    function iniciarAluguel() {
+      if (!usuarioLogado) {
+        mostrarNotificacao(
+          '⚠ Acesso Restrito',
+          'Você precisa estar logado para alugar. Faça login e tente novamente.',
+          'warning'
+        );
+        setTimeout(() => {
+          irParaLogin();
+        }, 1500);
+        return;
+      }
+
+      abrirPagamento();
+    }
+
+    function abrirPagamento() {
+      if (!quadraSelecionada) {
+        mostrarNotificacao('❌ Erro', 'Selecione uma quadra primeiro.', 'error');
+        return;
+      }
+
+      const horaInicio = document.getElementById('horaInicio') ? document.getElementById('horaInicio').value : '18:00';
+      const horaFim = document.getElementById('horaFim') ? document.getElementById('horaFim').value : '20:00';
+      
+      const horaInicioNum = parseInt(horaInicio.split(':')[0]);
+      const horaFimNum = parseInt(horaFim.split(':')[0]);
+      const duracao = horaFimNum - horaInicioNum;
+      const valorUnitario = 120;
+      const totalPagamento = duracao * valorUnitario;
+
+      document.getElementById('pagamentoLocal').textContent = quadraSelecionada.nome;
+      document.getElementById('pagLocal').textContent = quadraSelecionada.nome;
+      document.getElementById('pagData').textContent = new Date().toLocaleDateString('pt-BR', { 
+        day: '2-digit', 
+        month: 'long', 
+        year: 'numeric' 
+      });
+      document.getElementById('pagHorario').textContent = `${horaInicio} - ${horaFim}`;
+      document.getElementById('pagTotal').textContent = `R$ ${totalPagamento.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+      document.getElementById('precoDisplay').textContent = `R$ ${valorUnitario.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+
+      document.getElementById('nomeTitular').value = usuarioLogado.nome || '';
+      document.getElementById('cpfTitular').value = '';
+      document.getElementById('cartaoNumero').value = '';
+      document.getElementById('cartaoValidade').value = '';
+      document.getElementById('cartaoCVV').value = '';
+
+      document.getElementById('homePage').classList.add('hidden');
+      document.getElementById('detalhePage').classList.add('hidden');
+      document.getElementById('loginPage').classList.add('hidden');
+      document.getElementById('profilePage').classList.add('hidden');
+      document.getElementById('pagamentoPage').classList.remove('hidden');
+    }
+
+    async function confirmarPagamento() {
+      const nomeTitular = document.getElementById('nomeTitular').value.trim();
+      const cartao = document.getElementById('cartaoNumero').value.trim() || '1234 5678 9012 3456';
+      const validade = document.getElementById('cartaoValidade').value.trim() || '12/26';
+      const cvv = document.getElementById('cartaoCVV').value.trim() || '000';
+
+      if (!nomeTitular) {
+        mostrarNotificacao('⚠ Nome obrigatório', 'Digite o nome do titular.', 'warning');
+        return;
+      }
+
+      mostrarNotificacao('💳 Processando...', 'Sua transação está sendo processada...', 'info');
+      try {
+        const horaInicio = document.getElementById('horaInicio') ? document.getElementById('horaInicio').value : '18:00';
+        const horaFim = document.getElementById('horaFim') ? document.getElementById('horaFim').value : '20:00';
+        const horaInicioNum = parseInt(horaInicio.split(':')[0]);
+        const horaFimNum = parseInt(horaFim.split(':')[0]);
+        const duracao = horaFimNum - horaInicioNum;
+        const valorUnitario = 120;
+        const totalPagamento = duracao * valorUnitario;
+
+        const body = {
+          user_id: usuarioLogado?.id || null,
+          local: quadraSelecionada?.nome || 'Local desconhecido',
+          horario: `${horaInicio} - ${horaFim}`,
+          valor: `R$ ${totalPagamento.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`,
+          metodo: 'Cartão de Crédito',
+          ultimos4: cartao.slice(-4)
+        };
+
+        const res = await fetch(`${API_BASE}/api/reservations`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(body)
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error || 'Erro ao criar reserva');
+
+        const novaReserva = data.reserva;
+        const novoPagamento = data.pagamento;
+
+        reservasUsuario.push(novaReserva);
+        pagamentosUsuario.push(novoPagamento);
+
+        mostrarNotificacao('✓ Pagamento Confirmado!', `Sua reserva em ${novaReserva.local} foi concluída com sucesso!`, 'success');
+        quadraSelecionada = null;
+
+        setTimeout(() => {
+          irParaPerfil();
+          document.querySelectorAll('.profile-tab').forEach(tab => tab.classList.remove('active'));
+          document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+          const abReservas = document.querySelector('[data-tab="reservas"]');
+          if (abReservas) abReservas.classList.add('active');
+          const contentReservas = document.getElementById('reservas-content');
+          if (contentReservas) contentReservas.classList.add('active');
+          carregarReservasUsuario();
+        }, 1000);
+      } catch (err) {
+        console.error(err);
+        mostrarNotificacao('⚠ Erro', 'Falha ao processar pagamento.', 'warning');
+      }
+    }
+
+    function carregarReservasUsuario() {
+      const container = document.getElementById('reservasList');
+      if (!container) return;
+
+      if (!reservasUsuario || reservasUsuario.length === 0) {
+        container.innerHTML = '<div class="empty-message"><p>Você ainda não tem reservas.</p></div>';
+        return;
+      }
+
+      let html = '<div class="reservas-list">';
+      reservasUsuario.forEach(reserva => {
+        const avaliacaoReserva = avaliacoes.find(a => a.reservaId === reserva.id);
+        const temAvaliacao = avaliacaoReserva ? true : false;
+        
+        html += `
+          <div class="reserva-card" data-reserva-id="${reserva.id}">
+            <div class="reserva-header">
+              <h5 class="reserva-title">${reserva.local}</h5>
+              <span class="reserva-status status-${reserva.status.toLowerCase().replace(' ', '-')}">${reserva.status}</span>
+            </div>
+            <div class="reserva-details">
+              <div class="reserva-detail">
+                <strong>Data</strong>
+                <span>${reserva.data}</span>
+              </div>
+              <div class="reserva-detail">
+                <strong>Horário</strong>
+                <span>${reserva.horario}</span>
+              </div>
+              <div class="reserva-detail">
+                <strong>Valor</strong>
+                <span>${reserva.valor}</span>
+              </div>
+            </div>
+            <div class="checkin-section" style="margin-top:12px;padding:12px;background:#f0f0f0;border-radius:8px;border-left:4px solid #f57c00;">
+              <div class="checkin-header">
+                <h4 style="margin:0;color:#f57c00;">⏱ Check-in</h4>
+              </div>
+              <div class="checkin-info" style="margin-top:8px;">
+                <div class="checkin-info-item">
+                  <strong>Status:</strong>
+                  <span class="checkin-status pending" id="checkin-status-${reserva.id}">Pendente</span>
+                </div>
+              </div>
+              <button onclick="fazerCheckin('${reserva.id}', '${reserva.local}')" style="margin-top:10px;width:100%;height:40px;background:#f57c00;color:#fff;border:none;border-radius:6px;cursor:pointer;font-weight:700;">Fazer Check-in</button>
+            </div>
+            ${temAvaliacao ? `
+              <div style="margin-top:12px;padding:12px;background:#e8f5e9;border-radius:8px;border-left:4px solid #2fa53a;">
+                <div style="font-weight:700;color:#2e7d32;margin-bottom:8px;">✓ Avaliação enviada</div>
+                <div style="display:flex;gap:4px;font-size:1.2rem;margin-bottom:8px;">${'⭐'.repeat(avaliacaoReserva.rating)}</div>
+                <div style="color:#555;font-size:0.9rem;font-style:italic;">"${avaliacaoReserva.comentario}"</div>
+              </div>
+            ` : `
+              <button onclick="abrirModalAvaliacao('${reserva.id}', '${reserva.local}')" style="margin-top:12px;width:100%;height:40px;background:#1849a9;color:#fff;border:none;border-radius:6px;cursor:pointer;font-weight:700;">⭐ Avaliar</button>
+            `}
+          </div>
+        `;
+      });
+      html += '</div>';
+      container.innerHTML = html;
+      // Anexa os handlers aos botões dentro dos cards (suporta cards estáticos e dinâmicos)
+      attachReservationHandlers();
+    }
+
+
+    // Anexa handlers de checkin/cancel/avaliar em cada reserva (fallback para cards estáticos)
+    function attachReservationHandlers() {
+      document.querySelectorAll('.reserva-card').forEach(card => {
+        const reservaId = card.getAttribute('data-reserva-id');
+
+        const btnCheckin = card.querySelector('.btn-checkin');
+        if (btnCheckin && !btnCheckin.dataset._attached) {
+          btnCheckin.addEventListener('click', () => fazerCheckin(reservaId, card.querySelector('.reserva-title')?.textContent || ''));
+          btnCheckin.dataset._attached = '1';
+        }
+
+        const btnCancel = card.querySelector('.btn-cancel');
+        if (btnCancel && !btnCancel.dataset._attached) {
+          btnCancel.addEventListener('click', () => cancelarReserva(reservaId));
+          btnCancel.dataset._attached = '1';
+        }
+
+        // botão de avaliar — pode existir em cards dinâmicos gerados por carregarReservasUsuario
+        const btnAvaliar = card.querySelector('.avaliar-btn');
+        if (btnAvaliar && !btnAvaliar.dataset._attached) {
+          btnAvaliar.addEventListener('click', () => abrirModalAvaliacao(reservaId, card.querySelector('.reserva-title')?.textContent || ''));
+          btnAvaliar.dataset._attached = '1';
+        }
+      });
+    }
+    function carregarPagamentosUsuario() {
+      const container = document.getElementById('pagamentosList');
+      if (!container) return;
+
+      if (!pagamentosUsuario || pagamentosUsuario.length === 0) {
+        container.innerHTML = '<div class="empty-message"><p>Você ainda não realizou pagamentos.</p></div>';
+        return;
+      }
+
+      let html = '';
+      pagamentosUsuario.forEach(pag => {
+        html += `
+          <div class="pagamento-card">
+            <div class="pagamento-info">
+              <h4>Cartão ***${pag.ultimos4}</h4>
+              <p>${pag.metodo} - ${pag.data}</p>
+            </div>
+            <div class="pagamento-valor">
+              <div class="valor">${pag.valor}</div>
+              <div class="data">${pag.status}</div>
+            </div>
+          </div>
+        `;
+      });
+      container.innerHTML = html;
+    }
+
+    // ========== FIM LÓGICA DE NEGÓCIO ==========
+
+    function criarChip(label, value, onRemove) {
+      const chip = document.createElement('div');
+      chip.className = 'chip';
+      chip.innerHTML = `<span>${label}: ${value}</span>`;
+
+      const btn = document.createElement('button');
+      btn.textContent = '×';
+      btn.addEventListener('click', onRemove);
+      chip.appendChild(btn);
+      chipsContainer.appendChild(chip);
+    }
+
+    function atualizarChips() {
+      chipsContainer.innerHTML = '';
+
+      if (dataInput.value) {
+        criarChip('Data', dataInput.value, () => {
+          dataInput.value = '';
+          atualizarChips();
+          resetarTela();
+        });
+      }
+
+      if (horaInicioInput.value) {
+        criarChip('Início', horaInicioInput.value, () => {
+          horaInicioInput.value = '';
+          atualizarChips();
+          resetarTela();
+        });
+      }
+
+      if (horaFimInput.value) {
+        criarChip('Fim', horaFimInput.value, () => {
+          horaFimInput.value = '';
+          atualizarChips();
+          resetarTela();
+        });
+      }
+
+      if (tipoInput.value) {
+        criarChip('Tipo', tipoInput.value, () => {
+          tipoInput.value = '';
+          atualizarChips();
+          resetarTela();
+        });
+      }
+
+      if (modalidadeInput.value) {
+        criarChip('Modalidade', modalidadeInput.value, () => {
+          modalidadeInput.value = '';
+          atualizarChips();
+          resetarTela();
+        });
+      }
+    }
+
+    function renderCards(lista) {
+      cardsGrid.innerHTML = '';
+
+      if (!lista.length) {
+        resultados.classList.add('hidden');
+        emptyState.classList.remove('hidden');
+        emptyState.innerHTML = `
+          <h3>Nenhuma quadra encontrada</h3>
+          <p>Tente mudar os filtros para encontrar opções disponíveis.</p>
+        `;
+        return;
+      }
+
+      lista.forEach((quadra) => {
+        const card = document.createElement('article');
+        card.className = 'card';
+
+        const statusClass = quadra.status === 'Disponível' ? 'available' : 'unavailable';
+
+        card.innerHTML = `
+          <div class="card-image">
+            <span class="status ${statusClass}">${quadra.status}</span>
+          </div>
+          <div class="card-body">
+            <h4>${quadra.nome}</h4>
+            <div class="meta">
+              <span>${quadra.modalidade}</span>
+              <span>${quadra.tipo}</span>
+              <span>${quadra.inicio} - ${quadra.fim}</span>
+              <span class="local-address">${quadra.local}</span>
+            </div>
+            <div class="card-footer">
+              <button class="details-btn" data-nome="${quadra.nome}" data-local="${quadra.local}" data-modalidade="${quadra.modalidade}">Ver detalhes</button>
+              <button class="calendar-btn">📅</button>
+            </div>
+          </div>
+        `;
+
+        cardsGrid.appendChild(card);
+
+        const detailsBtn = card.querySelector('.details-btn');
+        detailsBtn.addEventListener('click', () => abrirDetalhe(quadra));
+      });
+
+      emptyState.classList.add('hidden');
+      resultados.classList.remove('hidden');
+    }
+
+    function abrirDetalhe(quadra) {
+      quadraSelecionada = quadra; // Armazenar quadra selecionada
+      homePage.classList.add('hidden');
+      detalhePage.classList.remove('hidden');
+      detalheTitulo.textContent = quadra.nome;
+      detalheDescricao.textContent = `${quadra.nome} é um espaço para ${quadra.modalidade.toLowerCase()}, localizado em ${quadra.local}. Conta com boa estrutura, fácil acesso e horário disponível de ${quadra.inicio} até ${quadra.fim}.`;
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    voltarBtn.addEventListener('click', () => {
+      detalhePage.classList.add('hidden');
+      homePage.classList.remove('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Função para atualizar o header quando faz login/logout
+    function updateHeaderButton() {
+      if (usuarioLogado) {
+        loginBtnHeader.classList.add('hidden');
+        profileHeaderBtn.classList.add('active');
+        profileNameHeader.textContent = usuarioLogado.nome;
+      } else {
+        loginBtnHeader.classList.remove('hidden');
+        profileHeaderBtn.classList.remove('active');
+      }
+    }
+
+    // Funções de navegação
+    function irParaLogin() {
+      homePage.classList.add('hidden');
+      detalhePage.classList.add('hidden');
+      loginPage.classList.remove('hidden');
+      profilePage.classList.add('hidden');
+      pagamentoPage.classList.add('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function irParaPerfil() {
+      homePage.classList.add('hidden');
+      detalhePage.classList.add('hidden');
+      loginPage.classList.add('hidden');
+      profilePage.classList.remove('hidden');
+      pagamentoPage.classList.add('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function irParaHome() {
+      homePage.classList.remove('hidden');
+      detalhePage.classList.add('hidden');
+      loginPage.classList.add('hidden');
+      profilePage.classList.add('hidden');
+      pagamentoPage.classList.add('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    voltarLoginBtn.addEventListener('click', () => {
+      loginPage.classList.add('hidden');
+      homePage.classList.remove('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Ir para página de cadastro
+    document.getElementById('goToSignupLink').addEventListener('click', (e) => {
+      e.preventDefault();
+      loginPage.classList.add('hidden');
+      signupPage.classList.remove('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Voltar do cadastro para login
+    voltarSignupBtn.addEventListener('click', () => {
+      signupPage.classList.add('hidden');
+      loginPage.classList.remove('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Link "Voltar ao login" na página de cadastro
+    document.getElementById('voltarLoginLink').addEventListener('click', (e) => {
+      e.preventDefault();
+      signupPage.classList.add('hidden');
+      loginPage.classList.remove('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    loginForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = document.getElementById('email').value;
+      const senha = document.getElementById('senha').value;
+
+      if (!email || !senha) {
+        mostrarNotificacao('⚠ Erro', 'Preencha email e senha.', 'warning');
+        return;
+      }
+
+      try {
+        const res = await fetch(`${API_BASE}/api/login`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, senha })
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error || 'Erro no login');
+
+        usuarioLogado = data;
+        reservasUsuario = [];
+        pagamentosUsuario = [];
+        document.getElementById('profileUserName').textContent = usuarioLogado.nome || usuarioLogado.email;
+        document.getElementById('profileUserEmail').textContent = usuarioLogado.email || '';
+        updateHeaderButton();
+        mostrarNotificacao('✓ Login Realizado!', `Bem-vindo, ${usuarioLogado.nome || usuarioLogado.email}!`, 'success');
+        loginForm.reset();
+
+        // carregar reservas do usuário no backend
+        try {
+          const r = await fetch(`${API_BASE}/api/users/${usuarioLogado.id}/reservations`);
+          if (r.ok) {
+            reservasUsuario = await r.json();
+          }
+        } catch (err) {
+          console.error('Erro ao carregar reservas do usuário:', err);
+        }
+
+        irParaHome();
+      } catch (err) {
+        console.error(err);
+        mostrarNotificacao('⚠ Erro', 'Falha ao conectar com o servidor.', 'warning');
+      }
+    });
+
+    // Formulário de cadastro
+    signupForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const nome = document.getElementById('signupNome').value.trim();
+      const email = document.getElementById('signupEmail').value.trim();
+      const telefone = document.getElementById('signupTelefone').value.trim();
+      const senha = document.getElementById('signupSenha').value;
+      const senhaConfirm = document.getElementById('signupSenhaConfirm').value;
+
+      // Validações
+      if (!nome || !email || !senha || !senhaConfirm) {
+        mostrarNotificacao('⚠ Erro', 'Preencha todos os campos.', 'warning');
+        return;
+      }
+
+      if (senha !== senhaConfirm) {
+        mostrarNotificacao('⚠ Erro', 'As senhas não conferem.', 'warning');
+        return;
+      }
+
+      if (senha.length < 6) {
+        mostrarNotificacao('⚠ Erro', 'A senha deve ter pelo menos 6 caracteres.', 'warning');
+        return;
+      }
+
+      try {
+        const res = await fetch(`${API_BASE}/api/signup`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ nome, email, telefone, senha })
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error || 'Erro no cadastro');
+
+        mostrarNotificacao('✓ Conta Criada!', `Bem-vindo, ${nome}! Agora você pode fazer login.`, 'success');
+        signupForm.reset();
+        setTimeout(() => {
+          signupPage.classList.add('hidden');
+          loginPage.classList.remove('hidden');
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }, 800);
+      } catch (err) {
+        console.error(err);
+        mostrarNotificacao('⚠ Erro', 'Falha ao cadastrar usuário.', 'warning');
+      }
+    });
+
+    // Abrir login ou perfil do header
+    loginBtnHeader.addEventListener('click', () => {
+      if (usuarioLogado) {
+        irParaPerfil();
+      } else {
+        irParaLogin();
+      }
+    });
+
+    // Abrir perfil ao clicar no ícone/nome no header
+    profileHeaderBtn.addEventListener('click', () => {
+      irParaPerfil();
+    });
+
+    // Voltar do perfil
+    voltarProfileBtn.addEventListener('click', () => {
+      profilePage.classList.add('hidden');
+      homePage.classList.remove('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Logout
+    logoutBtn.addEventListener('click', () => {
+      usuarioLogado = null;
+      reservasUsuario = [];
+      pagamentosUsuario = [];
+      updateHeaderButton();
+      profilePage.classList.add('hidden');
+      homePage.classList.remove('hidden');
+      mostrarNotificacao(
+        '✓ Saída Realizada',
+        'Você saiu da sua conta com sucesso!',
+        'success'
+      );
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Tabs do perfil
+    document.querySelectorAll('.profile-tab').forEach((tab) => {
+      tab.addEventListener('click', () => {
+        const tabName = tab.getAttribute('data-tab');
+        
+        // Remove classe active de todas as abas
+        document.querySelectorAll('.profile-tab').forEach((t) => {
+          t.classList.remove('active');
+        });
+        document.querySelectorAll('.tab-content').forEach((content) => {
+          content.classList.remove('active');
+        });
+        
+        // Carregar dados das abas
+        if (tabName === 'reservas') {
+          carregarReservasUsuario();
+        } else if (tabName === 'pagamentos') {
+          carregarPagamentosUsuario();
+        }
+        
+        // Adiciona classe active à aba clicada
+        tab.classList.add('active');
+        document.getElementById(tabName + '-content').classList.add('active');
+      });
+    });
+
+    // Salvar dados do perfil
+    document.querySelector('.btn-save').addEventListener('click', () => {
+      const nome = document.getElementById('nome').value;
+      const email = document.getElementById('email').value;
+      
+      if (nome && email) {
+        usuarioLogado.nome = nome;
+        usuarioLogado.email = email;
+        document.getElementById('profileUserName').textContent = nome;
+        document.getElementById('profileUserEmail').textContent = email;
+        mostrarNotificacao(
+          '✓ Dados Atualizados',
+          'Seus dados foram salvos com sucesso!',
+          'success'
+        );
+      }
+    });
+
+    // Event listeners para pagamento
+    const confirmarPagamentoBtn = document.getElementById('confirmarPagamentoBtn');
+    const cancelarPagamentoBtn = document.getElementById('cancelarPagamentoBtn');
+    const voltarPagamentoBtn = document.getElementById('voltarPagamentoBtn');
+
+    if (confirmarPagamentoBtn) {
+      confirmarPagamentoBtn.addEventListener('click', confirmarPagamento);
+    }
+
+    if (cancelarPagamentoBtn) {
+      cancelarPagamentoBtn.addEventListener('click', () => {
+        document.getElementById('pagamentoPage').classList.add('hidden');
+        document.getElementById('detalhePage').classList.remove('hidden');
+        quadraSelecionada = null;
+      });
+    }
+
+    if (voltarPagamentoBtn) {
+      voltarPagamentoBtn.addEventListener('click', () => {
+        document.getElementById('pagamentoPage').classList.add('hidden');
+        document.getElementById('detalhePage').classList.remove('hidden');
+        quadraSelecionada = null;
+      });
+    }
+
+    function resetarTela() {
+      resultados.classList.add('hidden');
+      emptyState.classList.remove('hidden');
+      emptyState.innerHTML = `
+        <h3>Selecione os filtros acima</h3>
+        <p>Informe data, horário, tipo e modalidade para encontrar uma quadra disponível.</p>
+      `;
+    }
+
+    function buscarQuadras() {
+      atualizarChips();
+
+      const filtrosPreenchidos = [
+        dataInput.value,
+        horaInicioInput.value,
+        horaFimInput.value,
+        tipoInput.value,
+        modalidadeInput.value
+      ].filter(Boolean);
+
+      if (!filtrosPreenchidos.length) {
+        resetarTela();
+        return;
+      }
+
+      const resultado = quadras.filter((quadra) => {
+        const bateTipo = !tipoInput.value || quadra.tipo === tipoInput.value;
+        const bateModalidade = !modalidadeInput.value || quadra.modalidade === modalidadeInput.value;
+        const bateInicio = !horaInicioInput.value || quadra.inicio >= horaInicioInput.value;
+        const bateFim = !horaFimInput.value || quadra.fim <= horaFimInput.value;
+
+        return bateTipo && bateModalidade && bateInicio && bateFim;
+      });
+
+      renderCards(resultado);
+    }
+
+    buscarBtn.addEventListener('click', buscarQuadras);
+
+    [dataInput, horaInicioInput, horaFimInput, tipoInput, modalidadeInput].forEach((campo) => {
+      campo.addEventListener('change', atualizarChips);
+    });
+
+    // ============================================
+    // SISTEMA DE NOTIFICAÇÕES E CHECK-IN
+    // ============================================
+
+    // Função para mostrar notificações
+    function mostrarNotificacao(titulo, mensagem, tipo = 'info') {
+      const container = document.getElementById('notificationContainer');
+      const notif = document.createElement('div');
+      notif.className = `notification ${tipo}`;
+      
+      notif.innerHTML = `
+        <div class="notification-content">
+          <p class="notification-title">${titulo}</p>
+          <p class="notification-message">${mensagem}</p>
+        </div>
+        <button class="notification-close" onclick="this.parentElement.remove()">×</button>
+      `;
+      
+      container.appendChild(notif);
+      
+      // Remove automaticamente após 5 segundos
+      setTimeout(() => {
+        notif.style.animation = 'slideOut 0.3s ease-out';
+        setTimeout(() => notif.remove(), 300);
+      }, 5000);
+    }
+
+    // Função para fazer check-in
+    function fazerCheckin(reservaId, nomeLugar) {
+      const statusEl = document.getElementById(`checkin-status-${reservaId}`);
+      const countdownEl = document.getElementById(`countdown-${reservaId}`);
+      const card = document.querySelector(`[data-reserva-id="${reservaId}"]`);
+      
+      if (statusEl && statusEl.textContent === 'Pendente') {
+        // Atualizar status visual
+        statusEl.textContent = 'Confirmado ✓';
+        statusEl.className = 'checkin-status confirmed';
+        
+        // Atualizar a seção do check-in
+        const checkinSection = card.querySelector('.checkin-section');
+        if (checkinSection) {
+          checkinSection.style.background = '#e8f5e9';
+          checkinSection.style.borderColor = '#2e7d32';
+          
+          const header = checkinSection.querySelector('.checkin-header h4');
+          header.textContent = '✓ Check-in Realizado';
+          header.style.color = '#2e7d32';
+          
+          const infoItems = checkinSection.querySelectorAll('.checkin-info-item');
+          const now = new Date();
+          infoItems[0].innerHTML = `<strong>Check-in em:</strong><span>${now.getDate()} de Abril às ${now.getHours()}:${String(now.getMinutes()).padStart(2, '0')}</span>`;
+          infoItems[1].innerHTML = `<strong>Duração:</strong><span>2 horas</span>`;
+        }
+        
+        // Mostrar notificação de sucesso
+        mostrarNotificacao(
+          '✓ Check-in Realizado!',
+          `Você fez check-in em ${nomeLugar}. Aproveite o jogo!`,
+          'success'
+        );
+
+        // Desabilitar botão de check-in
+        const btnCheckin = card.querySelector('.btn-checkin');
+        btnCheckin.disabled = true;
+        btnCheckin.textContent = 'Check-in Realizado';
+      }
+    }
+
+    // Variáveis para controlar o modal de avaliação
+    let avaliacaoAtualReservaId = null;
+    let avaliacaoAtualNomeLocal = null;
+
+    function abrirModalAvaliacao(reservaId, nomeLocal) {
+      avaliacaoAtualReservaId = reservaId;
+      avaliacaoAtualNomeLocal = nomeLocal;
+      document.getElementById('avaliacaoModal').style.display = 'flex';
+      document.getElementById('ratingValue').value = 0;
+      document.getElementById('comentarioText').value = '';
+      // Resetar stars
+      document.querySelectorAll('.star').forEach(star => {
+        star.textContent = '☆';
+        star.style.color = '#ddd';
+      });
+    }
+
+    function fecharModalAvaliacao() {
+      document.getElementById('avaliacaoModal').style.display = 'none';
+      avaliacaoAtualReservaId = null;
+      avaliacaoAtualNomeLocal = null;
+    }
+
+    function enviarAvaliacao() {
+      const rating = parseInt(document.getElementById('ratingValue').value);
+      const comentario = document.getElementById('comentarioText').value.trim();
+
+      if (rating === 0) {
+        mostrarNotificacao('⚠ Erro', 'Selecione uma classificação.', 'warning');
+        return;
+      }
+
+      if (!comentario) {
+        mostrarNotificacao('⚠ Erro', 'Escreva um comentário.', 'warning');
+        return;
+      }
+
+      // Salvar avaliação
+      avaliacoes.push({
+        reservaId: avaliacaoAtualReservaId,
+        nomeLocal: avaliacaoAtualNomeLocal,
+        rating: rating,
+        comentario: comentario,
+        data: new Date().toLocaleDateString('pt-BR'),
+        usuario: usuarioLogado.nome
+      });
+
+      mostrarNotificacao(
+        '✓ Avaliação Enviada!',
+        `Obrigado por avaliar ${avaliacaoAtualNomeLocal}!`,
+        'success'
+      );
+
+      fecharModalAvaliacao();
+      carregarReservasUsuario();
+    }
+
+    // Inicializar event listeners para as estrelas
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.star').forEach(star => {
+        star.addEventListener('click', () => {
+          const rating = star.getAttribute('data-rating');
+          document.getElementById('ratingValue').value = rating;
+
+          document.querySelectorAll('.star').forEach(s => {
+            const sRating = s.getAttribute('data-rating');
+            if (sRating <= rating) {
+              s.textContent = '⭐';
+              s.style.color = '#ffc107';
+            } else {
+              s.textContent = '☆';
+              s.style.color = '#ddd';
+            }
+          });
+        });
+
+        star.addEventListener('mouseover', () => {
+          const rating = star.getAttribute('data-rating');
+          document.querySelectorAll('.star').forEach(s => {
+            const sRating = s.getAttribute('data-rating');
+            if (sRating <= rating) {
+              s.style.color = '#ffc107';
+            } else {
+              s.style.color = '#ddd';
+            }
+          });
+        });
+      });
+
+      document.getElementById('starRating').addEventListener('mouseleave', () => {
+        const currentRating = parseInt(document.getElementById('ratingValue').value);
+        document.querySelectorAll('.star').forEach(s => {
+          const sRating = s.getAttribute('data-rating');
+          if (sRating <= currentRating) {
+            s.textContent = '⭐';
+            s.style.color = '#ffc107';
+          } else {
+            s.textContent = '☆';
+            s.style.color = '#ddd';
+          }
+        });
+      });
+    });
+
+    // Atualizar datas estáticas para a data atual (formato PT-BR personalizado)
+    function formatDatePTBR(date) {
+      const parts = date.toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' }).split(' de ');
+      const day = parts[0];
+      const month = parts[1] ? parts[1].charAt(0).toUpperCase() + parts[1].slice(1) : '';
+      const year = parts[2] || '';
+      return `${day} de ${month}, ${year}`;
+    }
+
+    function atualizarDatasParaHoje() {
+      const hoje = new Date();
+      const hojeFmt = formatDatePTBR(hoje);
+
+      // Atualiza datas nas reservas (onde o <strong> é 'Data')
+      document.querySelectorAll('.reserva-detail').forEach(detail => {
+        const label = detail.querySelector('strong');
+        const span = detail.querySelector('span');
+        if (label && label.textContent.trim().toLowerCase() === 'data' && span) {
+          span.textContent = hojeFmt;
+        }
+      });
+
+      // Atualiza datas na lista de pagamentos
+      document.querySelectorAll('.pagamento-valor .data').forEach(el => {
+        el.textContent = hojeFmt;
+      });
+
+      // Atualiza resumo de pagamento
+      const pagData = document.getElementById('pagData');
+      if (pagData) pagData.textContent = hojeFmt;
+    }
+
+    // Executa imediatamente e também ao carregar a página
+    document.addEventListener('DOMContentLoaded', atualizarDatasParaHoje);
+    atualizarDatasParaHoje();
+
+    // Função para cancelar reserva
+    function cancelarReserva(reservaId) {
+      if (confirm('Tem certeza que deseja cancelar esta reserva?')) {
+        const card = document.querySelector(`[data-reserva-id="${reservaId}"]`);
+        if (card) {
+          const checkinSection = card.querySelector('.checkin-section');
+          checkinSection.style.background = '#ffebee';
+          checkinSection.style.borderColor = '#c62828';
+          
+          const header = checkinSection.querySelector('.checkin-header h4');
+          header.textContent = '✗ Reserva Cancelada';
+          header.style.color = '#c62828';
+          
+          const status = card.querySelector('.reserva-status');
+          status.textContent = 'Cancelada';
+          status.className = 'reserva-status status-cancelada';
+          
+          // Botões
+          const btnCheckin = card.querySelector('.btn-checkin');
+          btnCheckin.disabled = true;
+          btnCheckin.textContent = 'Cancelado';
+          
+          const btnCancel = card.querySelector('.btn-cancel');
+          btnCancel.style.display = 'none';
+          
+          mostrarNotificacao(
+            'Reserva Cancelada',
+            'Sua reserva foi cancelada com sucesso. Verifique o reembolso em breve.',
+            'warning'
+          );
+        }
+      }
+    }
+
+    // Função para fazer check-in (offline)
+    function fazerCheckin(reservaId, local) {
+      const card = document.querySelector(`[data-reserva-id="${reservaId}"]`);
+      if (!card) {
+        mostrarNotificacao('⚠ Erro', 'Reserva não encontrada no cliente.', 'warning');
+        return;
+      }
+
+      // Atualizar visual do check-in
+      const checkinSection = card.querySelector('.checkin-section');
+      if (checkinSection) {
+        checkinSection.style.background = '#e8f5e9';
+        checkinSection.style.borderColor = '#2e7d32';
+
+        const header = checkinSection.querySelector('.checkin-header h4');
+        if (header) {
+          header.textContent = '✓ Check-in Realizado';
+          header.style.color = '#2e7d32';
+        }
+
+        const statusEl = card.querySelector('.reserva-status');
+        if (statusEl) {
+          statusEl.textContent = 'Confirmado';
+          statusEl.className = 'reserva-status status-confirmada';
+        }
+
+        const btnCheckin = card.querySelector('.btn-checkin');
+        if (btnCheckin) {
+          btnCheckin.disabled = true;
+          btnCheckin.textContent = 'Check-in realizado';
+        }
+
+        const btnCancel = card.querySelector('.btn-cancel');
+        if (btnCancel) btnCancel.style.display = 'none';
+
+        // Atualizar lista local de reservas (se existir)
+        const r = reservasUsuario && reservasUsuario.find(x => String(x.id) === String(reservaId));
+        if (r) r.status = 'CHECKIN_REALIZADO';
+
+        mostrarNotificacao('✓ Check-in', `Check-in realizado em ${local}`, 'success');
+      }
+    }
+
+    // Abertura/fechamento do modal de avaliação
+    let __avaliacaoReservaAtual = null;
+    function abrirModalAvaliacao(reservaId, local) {
+      __avaliacaoReservaAtual = reservaId;
+      const modal = document.getElementById('avaliacaoModal');
+      if (!modal) return;
+      modal.style.display = 'flex';
+      const title = modal.querySelector('h2');
+      if (title) title.textContent = `⭐ Avaliar ${local}`;
+      document.getElementById('ratingValue').value = '0';
+      document.getElementById('comentarioText').value = '';
+      document.querySelectorAll('.star').forEach(s => { s.textContent = '☆'; s.style.color = '#ddd'; });
+    }
+
+    function fecharModalAvaliacao() {
+      const modal = document.getElementById('avaliacaoModal');
+      if (!modal) return;
+      modal.style.display = 'none';
+      __avaliacaoReservaAtual = null;
+    }
+
+    function enviarAvaliacao() {
+      const rating = parseInt(document.getElementById('ratingValue').value) || 0;
+      const comentario = document.getElementById('comentarioText').value || '';
+      if (rating <= 0) {
+        mostrarNotificacao('⚠ Avaliação', 'Escolha uma nota entre 1 e 5.', 'warning');
+        return;
+      }
+      avaliacoes.push({ reservaId: __avaliacaoReservaAtual, rating, comentario });
+      fecharModalAvaliacao();
+      mostrarNotificacao('✓ Avaliação enviada', 'Obrigado pela sua avaliação!', 'success');
+      carregarReservasUsuario();
+    }
+
+    // Verificar e enviar lembretes automaticamente
+    function verificarLembretes() {
+      const agora = new Date();
+      
+      // Simular verificação de reservas próximas
+      const reservas = [
+        { id: 1, data: '28/04/2026', hora: '18:00', nome: 'Arena Futsal Central' },
+        { id: 3, data: '30/04/2026', hora: '18:30', nome: 'Quadra Olímpica' }
+      ];
+
+      reservas.forEach(reserva => {
+        // Calcular tempo até a reserva
+        const horasAteFalta = Math.floor(Math.random() * 48) + 1;
+        
+        if (horasAteFalta <= 24) {
+          document.getElementById(`countdown-${reserva.id}`).textContent = `${horasAteFalta}h`;
+          
+          if (horasAteFalta <= 2) {
+            mostrarNotificacao(
+              '🔔 Lembrete da sua Reserva!',
+              `Sua reserva em ${reserva.nome} é hoje às ${reserva.hora}!`,
+              'warning'
+            );
+          }
+        } else if (horasAteFalta > 24) {
+          document.getElementById(`countdown-${reserva.id}`).textContent = `${Math.floor(horasAteFalta / 24)}d`;
+        }
+      });
+    }
+
+    // Iniciar verificação de lembretes
+    verificarLembretes();
+    setInterval(verificarLembretes, 60000); // Verifica a cada minuto
+
+    // Notificação de boas-vindas quando faz login
+    function notificacaoBemVindo() {
+      if (usuarioLogado) {
+        setTimeout(() => {
+          mostrarNotificacao(
+            '👋 Bem-vindo!',
+            `Olá ${usuarioLogado.nome}, você tem 3 reservas ativas!`,
+            'info'
+          );
+        }, 500);
+      }
+    }
+
+    // Sobrescrever o evento de login para adicionar notificação
+    const loginFormOriginal = loginForm.onsubmit;
+    loginForm.addEventListener('submit', function() {
+      setTimeout(notificacaoBemVindo, 1500);
+    });
+  </script>
+</body>
+</html>
