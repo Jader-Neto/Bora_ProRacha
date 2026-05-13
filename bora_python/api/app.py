@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request, abort
+from flask import Flask, jsonify, request, abort, send_from_directory
 from flask_cors import CORS
 from datetime import datetime, timedelta
 import time
@@ -22,7 +22,8 @@ from services.reminder_service import ReminderService
 
 SPACE_STATUS_AVAILABLE = "Disponível"
 
-app = Flask(__name__)
+frontend_dir = Path(__file__).parent.parent / 'frontend'
+app = Flask(__name__, static_folder=str(frontend_dir), static_url_path='')
 CORS(app)
 
 quick_reg_service = QuickRegistrationService()
@@ -69,6 +70,11 @@ RESERVATIONS = []
 
 def gen_id(prefix: str) -> str:
     return f"{prefix}_{int(time.time() * 1000)}"
+
+
+@app.route('/')
+def index():
+    return send_from_directory(str(frontend_dir), 'index.html')
 
 
 @app.get('/api/quadras')
